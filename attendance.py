@@ -10,8 +10,6 @@ from config import *
 
 
 def get_duration_in_minutes(meeting_duration: str) -> int:
-    i: int = 0
-
     duration: List[str] = meeting_duration.split()
     total_minutes: int = 0
 
@@ -123,7 +121,6 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'help':
         show_manual_exit()
    
-
     # check if the path to attendance reports was provided, if not try the default path from config.py
     try:
         attendance_lists: List[str] = get_attendance_filepaths(sys.argv[1])
@@ -139,7 +136,6 @@ if __name__ == '__main__':
             show_manual_exit()
     
     # check if the output file name was provided, if not use default name from config.py
-
     try:
         filename: str = f'{sys.argv[2]}.csv'
 
@@ -148,11 +144,9 @@ if __name__ == '__main__':
         filename: str = DEFAULT_OUTPUT_FILENAME
       
     # get the attendance statistics...
-    
     attended_meetings, meeting_dates = get_statistics_all_meetings(attendance_lists)
     
     # try to save them do *.csv
-
     try:
         save_to_csv(attendance_lists, filename)
      
